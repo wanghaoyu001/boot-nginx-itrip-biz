@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.ItripUserLinkUserMapper">
+    <resultMap id="BaseResultMap" type="com.po.ItripUserLinkUser">
+        <constructor>
+            <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="linkUserName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="linkIdCard" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="linkPhone" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="userId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="creationDate" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="createdBy" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="modifyDate" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="modifiedBy" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="linkIdCardType" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, linkUserName, linkIdCard, linkPhone, userId, creationDate, createdBy, modifyDate,
+        modifiedBy, linkIdCardType
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from itrip_user_link_user
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from itrip_user_link_user
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.po.ItripUserLinkUser">
+        insert into itrip_user_link_user (linkUserName, linkIdCard,
+        linkPhone, userId, creationDate,
+        createdBy, modifyDate, modifiedBy,
+        linkIdCardType)
+        values (#{linkUserName,jdbcType=VARCHAR}, #{linkIdCard,jdbcType=VARCHAR},
+        #{linkPhone,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{creationDate,jdbcType=TIMESTAMP},
+        #{createdBy,jdbcType=BIGINT}, #{modifyDate,jdbcType=TIMESTAMP}, #{modifiedBy,jdbcType=BIGINT},
+        #{linkIdCardType,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.po.ItripUserLinkUser">
+        insert into itrip_user_link_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="linkusername != null">
+                linkUserName,
+            </if>
+            <if test="linkidcard != null">
+                linkIdCard,
+            </if>
+            <if test="linkphone != null">
+                linkPhone,
+            </if>
+            <if test="userid != null">
+                userId,
+            </if>
+            <if test="creationdate != null">
+                creationDate,
+            </if>
+            <if test="createdby != null">
+                createdBy,
+            </if>
+            <if test="modifydate != null">
+                modifyDate,
+            </if>
+            <if test="modifiedby != null">
+                modifiedBy,
+            </if>
+            <if test="linkidcardtype != null">
+                linkIdCardType,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="linkusername != null">
+                #{linkusername,jdbcType=VARCHAR},
+            </if>
+            <if test="linkidcard != null">
+                #{linkidcard,jdbcType=VARCHAR},
+            </if>
+            <if test="linkphone != null">
+                #{linkphone,jdbcType=VARCHAR},
+            </if>
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="creationdate != null">
+                #{creationdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdby != null">
+                #{createdby,jdbcType=BIGINT},
+            </if>
+            <if test="modifydate != null">
+                #{modifydate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifiedby != null">
+                #{modifiedby,jdbcType=BIGINT},
+            </if>
+            <if test="linkidcardtype != null">
+                #{linkidcardtype,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.po.ItripUserLinkUser">
+        update itrip_user_link_user
+        <set>
+            <if test="linkusername != null">
+                linkUserName = #{linkUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="linkidcard != null">
+                linkIdCard = #{linkIdCard,jdbcType=VARCHAR},
+            </if>
+            <if test="linkphone != null">
+                linkPhone = #{linkPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="userid != null">
+                userId = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="creationdate != null">
+                creationDate = #{creationDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdby != null">
+                createdBy = #{createdBy,jdbcType=BIGINT},
+            </if>
+            <if test="modifydate != null">
+                modifyDate = #{modifyDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifiedby != null">
+                modifiedBy = #{modifiedBy,jdbcType=BIGINT},
+            </if>
+            <if test="linkidcardtype != null">
+                linkIdCardType = #{linkIdCardType,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.po.ItripUserLinkUser">
+        update itrip_user_link_user
+        set linkUserName = #{linkUserName,jdbcType=VARCHAR},
+        linkIdCard = #{linkIdCard,jdbcType=VARCHAR},
+        linkPhone = #{linkPhone,jdbcType=VARCHAR},
+        userId = #{userId,jdbcType=INTEGER},
+        creationDate = #{creationDate,jdbcType=TIMESTAMP},
+        createdBy = #{createdBy,jdbcType=BIGINT},
+        modifyDate = #{modifyDate,jdbcType=TIMESTAMP},
+        modifiedBy = #{modifiedBy,jdbcType=BIGINT},
+        linkIdCardType = #{linkIdCardType,jdbcType=INTEGER}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="find" parameterType="java.util.Map" resultType="com.po.ItripUserLinkUser">
+        select *
+        from itrip_user_link_user
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null and id!=''">
+                and id=#{id}
+            </if>
+            <if test="linkUserName != null and linkUserName!=''">
+                and linkUserName=#{linkUserName}
+            </if>
+            <if test="linkIdCard != null and linkIdCard!=''">
+                and linkIdCard=#{linkIdCard}
+            </if>
+            <if test="linkPhone != null and linkPhone!=''">
+                and linkPhone=#{linkPhone}
+            </if>
+            <if test="userId != null and userId!=''">
+                and userId=#{userId}
+            </if>
+            <if test="creationDate != null and creationDate!=''">
+                and creationDate=#{creationDate}
+            </if>
+            <if test="createdBy != null and createdBy!=''">
+                and createdBy=#{createdBy}
+            </if>
+            <if test="modifyDate != null and modifyDate!=''">
+                and modifyDate=#{modifyDate}
+            </if>
+            <if test="modifiedBy != null and modifiedBy!=''">
+                and modifiedBy=#{modifiedBy}
+            </if>
+        </trim>
+    </select>
+</mapper>
